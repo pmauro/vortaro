@@ -15,7 +15,7 @@ DB_COLLECTION = "definitions"
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s -- %(message)s')
 LOGGER = logging.getLogger("dictionary")
 
-# todo Keep this from repeating code that appears in vorto/settings.py
+# todo Keep this from repeating code that appears in vortaro/settings.py
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
