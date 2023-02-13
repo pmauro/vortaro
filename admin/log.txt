@@ -1,0 +1,253 @@
+2023-02-04 22:23:38,109 INFO -- word already appears in DB: offal
+2023-02-04 22:23:38,544 INFO -- word already appears in DB: porphyry
+2023-02-04 22:23:38,984 INFO -- word already appears in DB: almagre
+2023-02-04 22:23:39,399 INFO -- word already appears in DB: rebozo
+2023-02-04 22:23:39,883 INFO -- successfully wrote to DB: bier
+2023-02-04 22:23:40,392 INFO -- successfully wrote to DB: ratchel
+2023-02-04 22:23:40,895 INFO -- successfully wrote to DB: vadose
+2023-02-04 22:23:41,399 INFO -- successfully wrote to DB: anareta
+2023-02-04 22:23:41,876 INFO -- successfully wrote to DB: sutler
+2023-02-04 22:23:42,364 INFO -- successfully wrote to DB: scantling
+2023-02-04 22:23:42,882 INFO -- successfully wrote to DB: osnaburg
+2023-02-04 22:23:43,385 INFO -- successfully wrote to DB: swale
+2023-02-04 22:23:43,876 INFO -- successfully wrote to DB: anchorite
+2023-02-04 22:23:44,371 INFO -- successfully wrote to DB: superannuated
+2023-02-04 22:23:44,880 INFO -- successfully wrote to DB: redound
+2023-02-04 22:23:45,392 INFO -- successfully wrote to DB: atavistic
+2023-02-04 22:23:45,901 INFO -- successfully wrote to DB: ur-text
+2023-02-04 22:23:46,408 INFO -- successfully wrote to DB: intercede
+2023-02-04 22:23:46,913 INFO -- successfully wrote to DB: manichean
+2023-02-04 22:23:47,401 INFO -- successfully wrote to DB: eventide
+2023-02-04 22:23:47,954 INFO -- successfully wrote to DB: taboret
+2023-02-04 22:23:48,454 INFO -- successfully wrote to DB: suppurate
+2023-02-04 22:23:48,970 INFO -- successfully wrote to DB: carbuncle
+2023-02-04 22:23:49,546 INFO -- successfully wrote to DB: periphrasis
+2023-02-04 22:23:50,119 INFO -- successfully wrote to DB: hummocked
+2023-02-04 22:23:50,710 INFO -- successfully wrote to DB: stemwinder
+2023-02-04 22:23:51,278 INFO -- successfully wrote to DB: lacuna
+2023-02-04 22:23:51,757 INFO -- successfully wrote to DB: frippery
+2023-02-04 22:23:52,268 INFO -- successfully wrote to DB: ribald
+2023-02-04 22:23:52,765 INFO -- successfully wrote to DB: tippler
+2023-02-04 22:23:53,244 INFO -- successfully wrote to DB: sui generis
+2023-02-04 22:23:53,749 INFO -- successfully wrote to DB: on the qui vive
+2023-02-04 22:23:54,243 INFO -- successfully wrote to DB: sere
+2023-02-04 22:23:54,747 INFO -- successfully wrote to DB: venal
+2023-02-04 22:23:55,244 INFO -- successfully wrote to DB: bromide
+2023-02-04 22:23:55,724 INFO -- successfully wrote to DB: punctilious
+2023-02-04 22:23:56,212 INFO -- successfully wrote to DB: lepidopterist
+2023-02-04 22:23:56,702 INFO -- successfully wrote to DB: copse
+2023-02-04 22:23:57,216 INFO -- successfully wrote to DB: paroxysmal
+2023-02-04 22:23:57,726 INFO -- successfully wrote to DB: egest
+2023-02-04 22:23:58,220 INFO -- successfully wrote to DB: oneiric
+2023-02-04 22:23:58,727 INFO -- successfully wrote to DB: anodyne
+2023-02-04 22:23:59,223 INFO -- successfully wrote to DB: dunned
+2023-02-04 22:23:59,721 INFO -- successfully wrote to DB: umbrage
+2023-02-04 22:24:00,226 INFO -- successfully wrote to DB: reify
+2023-02-04 22:24:00,738 INFO -- successfully wrote to DB: fugilist
+2023-02-04 22:24:01,253 INFO -- successfully wrote to DB: gam
+2023-02-04 22:24:01,757 INFO -- successfully wrote to DB: nosegay
+2023-02-04 22:24:02,944 INFO -- successfully wrote to DB: dan
+2023-02-04 22:24:03,511 INFO -- successfully wrote to DB: hale
+2023-02-04 22:24:04,008 INFO -- successfully wrote to DB: cameo
+2023-02-04 22:24:04,606 INFO -- successfully wrote to DB: pavé
+2023-02-04 22:24:05,094 INFO -- successfully wrote to DB: parure
+2023-02-04 22:24:05,593 INFO -- successfully wrote to DB: firth
+2023-02-04 22:24:06,112 INFO -- successfully wrote to DB: calque
+2023-02-04 22:24:06,804 INFO -- successfully wrote to DB: puckish
+2023-02-04 22:24:07,488 INFO -- successfully wrote to DB: dervish
+2023-02-04 22:24:08,002 INFO -- successfully wrote to DB: ripsnorter
+2023-02-04 22:24:08,635 INFO -- successfully wrote to DB: lulu
+2023-02-04 22:24:09,130 INFO -- successfully wrote to DB: redounds
+2023-02-04 22:24:09,633 INFO -- successfully wrote to DB: etiology
+2023-02-04 22:24:10,224 INFO -- successfully wrote to DB: asklepian
+2023-02-04 22:24:10,721 INFO -- successfully wrote to DB: petrichor
+2023-02-04 22:24:11,235 INFO -- successfully wrote to DB: filigree
+2023-02-04 22:24:11,780 INFO -- successfully wrote to DB: jape
+2023-02-04 22:24:12,308 INFO -- successfully wrote to DB: cadge
+2023-02-04 22:24:12,838 INFO -- successfully wrote to DB: orant
+2023-02-04 22:24:13,342 INFO -- successfully wrote to DB: badinage
+2023-02-04 22:24:13,894 INFO -- successfully wrote to DB: lassitude
+2023-02-04 22:24:14,461 INFO -- successfully wrote to DB: apotheosis
+2023-02-04 22:24:14,946 INFO -- successfully wrote to DB: salubrious
+2023-02-04 22:24:15,463 INFO -- successfully wrote to DB: dithyrambic
+2023-02-04 22:24:15,979 INFO -- successfully wrote to DB: bonhomie
+2023-02-04 22:24:16,507 INFO -- successfully wrote to DB: desultorily
+2023-02-04 22:24:17,012 INFO -- successfully wrote to DB: aperçu
+2023-02-04 22:24:17,544 INFO -- successfully wrote to DB: leitmotiv
+2023-02-04 22:24:18,163 INFO -- successfully wrote to DB: scrofulous
+2023-02-04 22:24:18,845 INFO -- successfully wrote to DB: prepossessing
+2023-02-04 22:24:19,352 INFO -- successfully wrote to DB: raffish
+2023-02-04 22:24:19,849 INFO -- successfully wrote to DB: quiddity
+2023-02-04 22:24:20,307 INFO -- word already appears in DB: anodyne
+2023-02-04 22:24:20,787 INFO -- successfully wrote to DB: polemical
+2023-02-04 22:24:21,289 INFO -- successfully wrote to DB: aleatoric
+2023-02-04 22:24:21,798 INFO -- successfully wrote to DB: epigone
+2023-02-04 22:24:22,298 INFO -- successfully wrote to DB: flâneur
+2023-02-04 22:24:22,791 INFO -- successfully wrote to DB: noetic
+2023-02-04 22:24:23,285 INFO -- successfully wrote to DB: parricidal
+2023-02-04 22:24:23,781 INFO -- successfully wrote to DB: hortatory
+2023-02-04 22:24:24,267 INFO -- successfully wrote to DB: legerdemain
+2023-02-04 22:24:24,776 INFO -- successfully wrote to DB: interstice
+2023-02-04 22:24:25,273 INFO -- successfully wrote to DB: cavalcade
+2023-02-04 22:24:25,755 INFO -- successfully wrote to DB: proscenium
+2023-02-04 22:24:26,250 INFO -- successfully wrote to DB: farouche
+2023-02-04 22:24:26,766 INFO -- successfully wrote to DB: egarée
+2023-02-04 22:24:27,300 INFO -- successfully wrote to DB: fait divers
+2023-02-04 22:24:27,791 INFO -- successfully wrote to DB: vituperative
+2023-02-04 22:24:28,247 INFO -- word already appears in DB: etiology
+2023-02-04 22:24:28,742 INFO -- successfully wrote to DB: draegerman
+2023-02-04 22:24:29,241 INFO -- successfully wrote to DB: paroxysm
+2023-02-04 22:24:29,741 INFO -- successfully wrote to DB: spanandry
+2023-02-04 22:24:30,244 INFO -- successfully wrote to DB: arcadian
+2023-02-04 22:24:30,739 INFO -- successfully wrote to DB: bougainvillea
+2023-02-04 22:24:31,221 INFO -- successfully wrote to DB: attar
+2023-02-04 22:24:31,717 INFO -- successfully wrote to DB: sepulcher
+2023-02-04 22:24:32,199 INFO -- successfully wrote to DB: naiad
+2023-02-04 22:24:32,702 INFO -- successfully wrote to DB: doleful
+2023-02-04 22:24:33,210 INFO -- successfully wrote to DB: fin-de-siclé
+2023-02-04 22:24:33,745 INFO -- successfully wrote to DB: plaint
+2023-02-04 22:24:34,240 INFO -- successfully wrote to DB: seraglio
+2023-02-04 22:24:34,729 INFO -- successfully wrote to DB: macadam
+2023-02-04 22:24:35,256 INFO -- successfully wrote to DB: creel
+2023-02-04 22:24:35,758 INFO -- successfully wrote to DB: decrepitude
+2023-02-04 22:24:36,243 INFO -- successfully wrote to DB: andirons
+2023-02-04 22:24:36,743 INFO -- successfully wrote to DB: auto-da-fé
+2023-02-04 22:24:37,229 INFO -- successfully wrote to DB: redolent
+2023-02-04 22:24:37,760 INFO -- successfully wrote to DB: bowlderize
+2023-02-04 22:24:38,256 INFO -- successfully wrote to DB: volubility
+2023-02-04 22:24:38,771 INFO -- successfully wrote to DB: zeugma
+2023-02-04 22:24:39,274 INFO -- successfully wrote to DB: susurration
+2023-02-04 22:24:39,769 INFO -- successfully wrote to DB: sallow
+2023-02-04 22:24:40,354 INFO -- successfully wrote to DB: langurous
+2023-02-04 22:24:40,874 INFO -- successfully wrote to DB: effluvia
+2023-02-04 22:24:41,422 INFO -- successfully wrote to DB: oldster
+2023-02-04 22:24:41,919 INFO -- word already appears in DB: sui generis
+2023-02-04 22:24:42,426 INFO -- successfully wrote to DB: palimpsest
+2023-02-04 22:24:42,923 INFO -- successfully wrote to DB: farrago
+2023-02-04 22:24:43,418 INFO -- successfully wrote to DB: derring-do
+2023-02-04 22:24:43,927 INFO -- successfully wrote to DB: hauteur
+2023-02-04 22:24:44,425 INFO -- successfully wrote to DB: rictus
+2023-02-04 22:24:44,970 INFO -- successfully wrote to DB: quail
+2023-02-04 22:24:45,479 INFO -- successfully wrote to DB: proleptic
+2023-02-04 22:24:46,026 INFO -- successfully wrote to DB: dreck
+2023-02-04 22:24:46,515 INFO -- successfully wrote to DB: shillelagh
+2023-02-04 22:24:47,023 INFO -- successfully wrote to DB: abstemious
+2023-02-04 22:24:47,526 INFO -- successfully wrote to DB: top
+2023-02-04 22:24:48,011 INFO -- successfully wrote to DB: envoi
+2023-02-04 22:24:48,522 INFO -- successfully wrote to DB: entrepôt
+2023-02-04 22:24:48,962 INFO -- word already appears in DB: badinage
+2023-02-04 22:24:49,474 INFO -- successfully wrote to DB: reavze
+2023-02-04 22:24:49,994 INFO -- successfully wrote to DB: zefir
+2023-02-04 22:24:50,540 INFO -- successfully wrote to DB: abdumbrate
+2023-02-04 22:24:51,045 INFO -- successfully wrote to DB: cassandra
+2023-02-04 22:24:51,547 INFO -- successfully wrote to DB: trammel
+2023-02-04 22:24:52,035 INFO -- successfully wrote to DB: belie
+2023-02-04 22:24:52,544 INFO -- successfully wrote to DB: etui
+2023-02-04 22:24:53,056 INFO -- successfully wrote to DB: opart
+2023-02-04 22:24:53,582 INFO -- successfully wrote to DB: apparatichik
+2023-02-04 22:24:54,064 INFO -- successfully wrote to DB: riparian
+2023-02-04 22:24:54,566 INFO -- successfully wrote to DB: wry
+2023-02-04 22:24:55,085 INFO -- successfully wrote to DB: raft
+2023-02-04 22:24:55,604 INFO -- successfully wrote to DB: bray
+2023-02-04 22:24:56,114 INFO -- successfully wrote to DB: frission
+2023-02-04 22:24:56,603 INFO -- successfully wrote to DB: preen
+2023-02-04 22:24:57,100 INFO -- successfully wrote to DB: enbanc
+2023-02-04 22:24:57,597 INFO -- successfully wrote to DB: gest
+2023-02-04 22:24:58,104 INFO -- successfully wrote to DB: sloe
+2023-02-04 22:24:58,599 INFO -- successfully wrote to DB: putsch
+2023-02-04 22:24:59,082 INFO -- successfully wrote to DB: rive
+2023-02-04 22:24:59,585 INFO -- successfully wrote to DB: sabot
+2023-02-04 22:25:00,071 INFO -- successfully wrote to DB: bis
+2023-02-04 22:25:00,585 INFO -- successfully wrote to DB: rebuse
+2023-02-04 22:25:01,078 INFO -- successfully wrote to DB: baal
+2023-02-04 22:25:01,581 INFO -- successfully wrote to DB: mendacious
+2023-02-04 22:25:02,354 INFO -- successfully wrote to DB: manful
+2023-02-04 22:25:02,854 INFO -- successfully wrote to DB: postprandial
+2023-02-04 22:25:03,387 INFO -- successfully wrote to DB: getmess
+2023-02-04 22:25:03,890 INFO -- successfully wrote to DB: quarto
+2023-02-04 22:25:04,442 INFO -- successfully wrote to DB: theodolite
+2023-02-04 22:25:04,898 INFO -- word already appears in DB: anchorite
+2023-02-04 22:25:05,919 INFO -- successfully wrote to DB: ha-ha
+2023-02-04 22:25:06,555 INFO -- successfully wrote to DB: doggerel
+2023-02-04 22:25:07,147 INFO -- successfully wrote to DB: portmanteau
+2023-02-04 22:25:07,667 INFO -- successfully wrote to DB: billet
+2023-02-04 22:25:08,636 INFO -- successfully wrote to DB: penurious
+2023-02-04 22:25:09,156 INFO -- successfully wrote to DB: po-faced
+2023-02-04 22:25:09,708 INFO -- successfully wrote to DB: termagant
+2023-02-04 22:25:10,208 INFO -- successfully wrote to DB: galligaskins
+2023-02-04 22:25:10,847 INFO -- successfully wrote to DB: argot
+2023-02-04 22:25:11,395 INFO -- successfully wrote to DB: omertà
+2023-02-04 22:25:11,889 INFO -- successfully wrote to DB: benighted
+2023-02-04 22:25:12,409 INFO -- successfully wrote to DB: hircosity
+2023-02-04 22:25:12,849 INFO -- word already appears in DB: paroxysm
+2023-02-04 22:25:13,341 INFO -- successfully wrote to DB: pellucid
+2023-02-04 22:25:13,849 INFO -- successfully wrote to DB: laconic
+2023-02-04 22:25:14,335 INFO -- successfully wrote to DB: donnybrook
+2023-02-04 22:25:14,871 INFO -- successfully wrote to DB: solipism
+2023-02-04 22:25:15,367 INFO -- successfully wrote to DB: cant
+2023-02-04 22:25:15,907 INFO -- successfully wrote to DB: trope
+2023-02-04 22:25:16,351 INFO -- word already appears in DB: shillelagh
+2023-02-04 22:25:16,878 INFO -- successfully wrote to DB: fatuous
+2023-02-04 22:25:17,389 INFO -- successfully wrote to DB: idealogue
+2023-02-04 22:25:17,852 INFO -- word already appears in DB: ribald
+2023-02-04 22:25:18,353 INFO -- successfully wrote to DB: depredation
+2023-02-04 22:25:18,856 INFO -- successfully wrote to DB: renunciation
+2023-02-04 22:25:19,352 INFO -- successfully wrote to DB: solicitous
+2023-02-04 22:25:20,547 INFO -- successfully wrote to DB: scrivener
+2023-02-04 22:25:21,048 INFO -- successfully wrote to DB: chrysalis
+2023-02-04 22:25:21,497 INFO -- word already appears in DB: macadam
+2023-02-04 22:25:21,977 INFO -- successfully wrote to DB: tenebrous
+2023-02-04 22:25:22,475 INFO -- successfully wrote to DB: matutinal
+2023-02-04 22:25:22,961 INFO -- successfully wrote to DB: wistful
+2023-02-04 22:25:23,473 INFO -- successfully wrote to DB: excelsior
+2023-02-04 22:25:23,981 INFO -- successfully wrote to DB: mien
+2023-02-04 22:25:24,496 INFO -- successfully wrote to DB: shrewd
+2023-02-04 22:25:24,993 INFO -- successfully wrote to DB: desultory
+2023-02-04 22:25:25,498 INFO -- successfully wrote to DB: diffident
+2023-02-04 22:25:25,984 INFO -- successfully wrote to DB: lugubrious
+2023-02-04 22:25:26,536 INFO -- successfully wrote to DB: nettle
+2023-02-04 22:25:27,047 INFO -- successfully wrote to DB: callow
+2023-02-04 22:25:27,491 INFO -- word already appears in DB: cavalcade
+2023-02-04 22:25:27,993 INFO -- successfully wrote to DB: huarache
+2023-02-04 22:25:28,472 INFO -- successfully wrote to DB: autochthonous
+2023-02-04 22:25:28,950 INFO -- successfully wrote to DB: damask
+2023-02-04 22:25:29,442 INFO -- successfully wrote to DB: odalisque
+2023-02-04 22:25:29,884 INFO -- word already appears in DB: cant
+2023-02-04 22:25:30,391 INFO -- successfully wrote to DB: tamarisk
+2023-02-04 22:25:30,893 INFO -- successfully wrote to DB: guanaco
+2023-02-04 22:25:31,385 INFO -- successfully wrote to DB: spoor
+2023-02-04 22:25:31,917 INFO -- successfully wrote to DB: atavism
+2023-02-04 22:25:32,419 INFO -- successfully wrote to DB: cod
+2023-02-04 22:25:33,028 INFO -- successfully wrote to DB: knook
+2023-02-04 22:25:33,587 INFO -- successfully wrote to DB: miasma
+2023-02-04 22:25:34,133 INFO -- successfully wrote to DB: mawkish
+2023-02-04 22:25:34,934 INFO -- successfully wrote to DB: extirpate
+2023-02-04 22:25:35,451 INFO -- successfully wrote to DB: churlish
+2023-02-04 22:25:35,955 INFO -- successfully wrote to DB: solipsistic
+2023-02-04 22:25:36,471 INFO -- successfully wrote to DB: inanities
+2023-02-04 22:25:36,973 INFO -- successfully wrote to DB: etiolate
+2023-02-04 22:25:37,479 INFO -- successfully wrote to DB: imbricate
+2023-02-04 22:25:37,979 INFO -- successfully wrote to DB: cloying
+2023-02-04 22:25:38,429 INFO -- word already appears in DB: raffish
+2023-02-04 22:25:38,927 INFO -- successfully wrote to DB: ermine
+2023-02-04 22:25:39,421 INFO -- successfully wrote to DB: benison
+2023-02-04 22:25:39,873 INFO -- word already appears in DB: petrichor
+2023-02-04 22:25:40,365 INFO -- successfully wrote to DB: lilt
+2023-02-04 22:25:40,868 INFO -- successfully wrote to DB: riata
+2023-02-04 22:25:41,351 INFO -- successfully wrote to DB: irenic
+2023-02-04 22:25:41,800 INFO -- word already appears in DB: riparian
+2023-02-04 22:25:42,296 INFO -- successfully wrote to DB: abaft
+2023-02-04 22:25:42,875 INFO -- successfully wrote to DB: nag
+2023-02-04 22:25:43,374 INFO -- successfully wrote to DB: shul
+2023-02-04 22:25:43,871 INFO -- successfully wrote to DB: cri de coeur
+2023-02-04 22:25:44,314 INFO -- word already appears in DB: desultory
+2023-02-04 22:25:44,793 INFO -- successfully wrote to DB: brocade
+2023-02-04 22:25:45,294 INFO -- successfully wrote to DB: jerkin
+2023-02-04 22:25:45,777 INFO -- successfully wrote to DB: suzerainty
+2023-02-04 22:25:46,243 INFO -- successfully wrote to DB: nonpareil
+2023-02-04 22:25:46,760 INFO -- successfully wrote to DB: hector
+2023-02-04 22:25:47,255 INFO -- successfully wrote to DB: solipsism
+2023-02-04 22:25:47,734 INFO -- successfully wrote to DB: galoot
+2023-02-04 22:25:48,174 INFO -- word already appears in DB: abstemious
+2023-02-04 22:25:48,685 INFO -- successfully wrote to DB: contretemps
+2023-02-04 22:25:49,175 INFO -- successfully wrote to DB: riposte
