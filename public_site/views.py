@@ -1,10 +1,11 @@
 import public_site.mw as mw
 
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse
 from pymongo import MongoClient
+from random import choice
 from threading import local
-from django.conf import settings
 
 DB_NAME = "mw"
 DB_COLLECTION = "definitions"
@@ -17,8 +18,12 @@ def mongo_client():
         _mongo_client.client = client
     return client
 
+def main(request):
+    #db_docs = mongo_client()[DB_NAME][DB_COLLECTION].find()
+    #cur_word = choice(db_docs)
+    return render(request, 'public_site/home.html')
 
-def list(request):
+def menu(request):
     db_docs = mongo_client()[DB_NAME][DB_COLLECTION].find()
     context = {'word_list': sorted(d['word'] for d in db_docs)}
     return render(request, 'public_site/menu.html', context)

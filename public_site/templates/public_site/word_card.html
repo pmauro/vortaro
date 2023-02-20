@@ -1,32 +1,28 @@
 {% extends 'public_site/base.html' %}
 
-{% load static %}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'public_site/style.css' %}">
-{% endblock %}
-
 {% block content %}
-<table>
-    <tr>
-        <td colspan="4" id="headword">
-            {{ headword }}
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" width="10%" id="syllables">
-          {{ syllables }}
-        </td>
-        <td colspan="2" id="pronunciation">
-          {{ pronunciation }}
-        </td>
-    </tr>
-    {% for sense in sense_list %}
-    <tr>
-        <td width="50px"></td>
-        <td width="20px" align="left" valign="top" id="sense">{{ sense.sense_number }}</td>
-        <td colspan="2" id="sense">{{ sense.sense_text |safe }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<div id="word_card">
+    <table>
+        <tr>
+            <td colspan="4" id="headword">
+                {{ headword }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="width: 10%" id="syllables">
+              {{ syllables }}
+            </td>
+            <td colspan="2" id="pronunciation">
+              {{ pronunciation }}
+            </td>
+        </tr>
+        {% for sense in sense_list %}
+        <tr>
+            <td style="width: 50px"></td>
+            <td style="width: 20px; align: left; vertical-align: top" id="sense">{{ sense.sense_number }}</td>
+            <td colspan="2" id="sense">{{ sense.sense_text | safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}

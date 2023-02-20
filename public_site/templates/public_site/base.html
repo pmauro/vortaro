@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{% load static %}
+
 <html>
 <head>
-    <title>Vorto</title>
-    {% block css %}
-    {% endblock %}
+    <title>Vortaro</title>
+    <link rel="stylesheet" href="{% static 'public_site/style.css' %}">
 </head>
 <body>
 {% block content %}
