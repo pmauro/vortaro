@@ -19,15 +19,19 @@ def mongo_client():
     return client
 
 def main(request):
-    #db_docs = mongo_client()[DB_NAME][DB_COLLECTION].find()
-    #cur_word = choice(db_docs)
-    return render(request, 'public_site/home.html')
-
-def menu(request):
     db_docs = mongo_client()[DB_NAME][DB_COLLECTION].find()
-    context = {'word_list': sorted(d['word'] for d in db_docs)}
-    return render(request, 'public_site/menu.html', context)
 
+    word_list = list(db_docs)
+    cur_word = choice(word_list)
+    definition = mw.parse(cur_word['word'], cur_word['api_response'][1:-1])
+
+    context = {'word_list': sorted(w['word'] for w in word_list), 'definition': definition.to_dict() }
+    return render(request, 'public_site/home.html', context)
+
+# def menu(request):
+#     db_docs = mongo_client()[DB_NAME][DB_COLLECTION].find()
+#     context = {'word_list': sorted(d['word'] for d in db_docs)}
+#     return render(request, 'public_site/menu.html', context)
 
 def definition(request, word):
     num_records = mongo_client()[DB_NAME][DB_COLLECTION].count_documents({'word': word})
@@ -39,4 +43,4 @@ def definition(request, word):
     db_doc = mongo_client()[DB_NAME][DB_COLLECTION].find_one({"word": word})
     definition = mw.parse(word, db_doc['api_response'][1:-1])
 
-    return render(request, 'public_site/word_card.html', definition.to_dict())
+    return render(request, 'public_site/word_card.html', {'definition': definition.to_dict()})

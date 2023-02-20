@@ -1,28 +1,27 @@
 {% extends 'public_site/base.html' %}
 
+
 {% block content %}
-<div id="word_card">
-    <table>
-        <tr>
-            <td colspan="4" id="headword">
-                {{ headword }}
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="width: 10%" id="syllables">
-              {{ syllables }}
-            </td>
-            <td colspan="2" id="pronunciation">
-              {{ pronunciation }}
-            </td>
-        </tr>
-        {% for sense in sense_list %}
-        <tr>
-            <td style="width: 50px"></td>
-            <td style="width: 20px; align: left; vertical-align: top" id="sense">{{ sense.sense_number }}</td>
-            <td colspan="2" id="sense">{{ sense.sense_text | safe }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
+<table>
+    <tr>
+        <td colspan="4" id="headword">
+            {{ definition.headword }}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="width: 10%" id="syllables">
+          {{ definition.syllables }}
+        </td>
+        <td colspan="2" id="pronunciation">
+          {{ definition.pronunciation }}
+        </td>
+    </tr>
+    {% for sense in definition.sense_list %}
+    <tr>
+        <td style="width: 50px"></td>
+        <td style="width: 20px; align: left; vertical-align: top" id="sense">{{ sense.sense_number }}</td>
+        <td colspan="2" id="sense">{{ sense.sense_text | safe }}</td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}

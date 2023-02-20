@@ -1,5 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Petit+Formal+Script|Crimson+Text');
 
+#sidenav {
+      height:100%;
+      width:200px;
+      position: fixed;
+      z-index:1;
+      top:0;
+      left:0;
+      background-color: white;
+      overflow: scroll;
+}
+
+button.sidenav {
+      font-family: "Crimson Text", Times, serif;
+      color: black;
+      background-color: white;
+      border: none;
+      width: 100%;
+}
+
+button.sidenav:hover {
+      background-color: ghostwhite;
+}
+
+#maincontent {
+  margin-left: 200px; /* Same as the width of the sidenav */
+}
+
 #headword {
       font-family: "Petit Formal Script", Times, serif;
       font-size: 64px;

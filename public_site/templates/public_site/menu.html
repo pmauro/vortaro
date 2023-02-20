@@ -1,9 +1,6 @@
-{% extends 'public_site/base.html' %}
-
-
-{% block content %}
-{% for word in word_list %}
-<a href="http://localhost:8000/words/{{ word }}">{{word}}</a><br />
-{% endfor %}
+{% block sidenav %}
+    {% for word in word_list %}
+        <a href="http://localhost:8000/words/{{ word }}">{{word}}</a><br />
+    {% endfor %}
 {% endblock %}
 

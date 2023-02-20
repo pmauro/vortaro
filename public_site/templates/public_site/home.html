@@ -2,8 +2,22 @@
 
 {% block content %}
 
-<div class="sidenav">
-    Hello world!
+<div id="sidenav">
+    {% for word in word_list %}
+        <button class="sidenav" href="words/{{ word }}" onclick="load_word(this); return false;">{{word}}</button><br />
+    {% endfor %}
+</div>
+<div id="maincontent">
+    {% include "./word_card.html" %}
 </div>
 
+<script type="text/javascript" >
+async function load_word(element) {
+    var response = await fetch(element.getAttribute('href'));
+    var new_html = await response.text();
+    document.getElementById("maincontent").innerHTML = new_html;
+}
+</script>
+
 {% endblock %}
+
