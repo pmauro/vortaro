@@ -131,3 +131,5 @@ dmypy.json
 # Project files
 secrets.json
 .idea/
+admin/test_words.txt
+admin/log.txt
