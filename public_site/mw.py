@@ -86,7 +86,14 @@ class Definition:
 
 
 def parse(headword, raw_json):
-    parsed_json = json.loads(raw_json)
+        parsed_json = json.loads(raw_json)
+    except:
+        return None
+    if type(parsed_json) == list:
+        parsed_json = parsed_json[0]
+
+    if "hwi" not in parsed_json:
+        return None
 
     d = Definition(headword)
 

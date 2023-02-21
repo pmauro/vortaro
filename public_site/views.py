@@ -11,12 +11,15 @@ DB_NAME = "mw"
 DB_COLLECTION = "definitions"
 
 _mongo_client = local()
+
+
 def mongo_client():
     client = getattr(_mongo_client, 'client', None)
     if client is None:
         client = MongoClient(settings.MONGODB_URI)
         _mongo_client.client = client
     return client
+
 
 def main(request):
     db_docs = mongo_client()[DB_NAME][DB_COLLECTION].find()
@@ -25,13 +28,15 @@ def main(request):
     cur_word = choice(word_list)
     definition = mw.parse(cur_word['word'], cur_word['api_response'][1:-1])
 
-    context = {'word_list': sorted(w['word'] for w in word_list), 'definition': definition.to_dict() }
+    context = {'word_list': sorted(w['word'] for w in word_list),
+               'definition': definition.to_dict() if definition is not None else None }
     return render(request, 'public_site/home.html', context)
 
 # def menu(request):
 #     db_docs = mongo_client()[DB_NAME][DB_COLLECTION].find()
 #     context = {'word_list': sorted(d['word'] for d in db_docs)}
 #     return render(request, 'public_site/menu.html', context)
+
 
 def definition(request, word):
     num_records = mongo_client()[DB_NAME][DB_COLLECTION].count_documents({'word': word})
@@ -41,6 +46,9 @@ def definition(request, word):
         return HttpResponse("multiple records found")
 
     db_doc = mongo_client()[DB_NAME][DB_COLLECTION].find_one({"word": word})
-    definition = mw.parse(word, db_doc['api_response'][1:-1])
+
+    definition = mw.parse(word, db_doc['api_response'])
+    if definition is None:
+        return HttpResponse("No definition in Merriam-Webster.")
 
     return render(request, 'public_site/word_card.html', {'definition': definition.to_dict()})
