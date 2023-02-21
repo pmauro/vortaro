@@ -24,6 +24,13 @@ button.sidenav:hover {
       background-color: ghostwhite;
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-content: center;
+}
+
 #maincontent {
   margin-left: 200px; /* Same as the width of the sidenav */
 }
@@ -48,13 +55,4 @@ button.sidenav:hover {
 #sense {
       font-family: "Crimson Text", Times, serif;
       font-size: 30px;
-}
-
-table {
-      width: 80%;
-      padding-left: 20px;
-}
-
-th, td {
-      padding-left: 20px;
 }

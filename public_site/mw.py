@@ -16,6 +16,17 @@ class Sense:
         # todo parse verbal illustration
         # todo parse sdsense
 
+        self.sn_top = None
+        self.sn_sub = None
+        sn_split = sn.split()
+        if len(sn_split) > 0:
+            if sn_split[0].isdigit():
+                self.sn_top = sn_split[0]
+                if len(sn_split) > 1:
+                    self.sn_sub = sn_split[1]
+            else:
+                self.sn_sub = sn_split[0]
+
     def set_def_text(self, dt):
         if self.def_text is not None:
             pass
@@ -38,8 +49,12 @@ class Sense:
         return Sense.proc_mw_text(str(self))
 
     def to_dict(self):
-        return {'sense_number': self.sense_number,
-                'sense_text': Sense.proc_mw_text(self.def_text)}
+        ret_dict = {'sense_text': Sense.proc_mw_text(self.def_text)}
+        if self.sn_top is not None:
+            ret_dict['sense_number'] = self.sn_top
+        if self.sn_sub is not None:
+            ret_dict['sense_number_sub'] = self.sn_sub
+        return ret_dict
 
 
 class Definition:

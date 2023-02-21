@@ -2,26 +2,22 @@
 
 
 {% block content %}
-<table>
-    <tr>
-        <td colspan="4" id="headword">
-            {{ definition.headword }}
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" id="syllables">
-          {{ definition.syllables }}
-        </td>
-        <td colspan="2" id="pronunciation">
-          {{ definition.pronunciation }}
-        </td>
-    </tr>
+<div style="padding-left: 20px;">
+    <div id="headword">{{ definition.headword }}</div>
+    <div class="flex-container">
+        <div id="syllables">{{ definition.syllables }}</div>
+        {% if definition %}
+        <div id="syllables">&nbsp;|&nbsp;</div>
+        {% endif %}
+        <div id="pronunciation">{{ definition.pronunciation }}</div>
+    </div>
     {% for sense in definition.sense_list %}
-    <tr>
-        <td style="width: 30px"></td>
-        <td style="width: 20px; align: left; vertical-align: top" id="sense">{{ sense.sense_number }}</td>
-        <td colspan="2" id="sense">{{ sense.sense_text | safe }}</td>
-    </tr>
+    <div class="flex-container">
+        <div id="sense" style="width: 30px; horiz-align: right">{{ sense.sense_number }}</div>
+        <div id="sense" style="width: 30px; horiz-align: right">{{ sense.sense_number_sub }}</div>
+        <div id="sense">{{ sense.sense_text | safe }}</div>
+    </div>
     {% endfor %}
-</table>
+</div>
+
 {% endblock %}
