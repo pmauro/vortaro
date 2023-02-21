@@ -9,9 +9,13 @@
     <link rel="stylesheet" href="{% static 'public_site/style.css' %}">
 </head>
 <body>
-
+<div>
 {% block content %}
 {% endblock %}
-
+</div>
+<div class="footer">
+    <img src="{% static 'public_site/mwlogo.png' %}" width="50px" height="50px" style="vertical-align:middle" /> &nbsp;&nbsp;
+    Powered by Merriam-Webster's Collegiate® Dictionary.
+</div>
 </body>
 </html>
