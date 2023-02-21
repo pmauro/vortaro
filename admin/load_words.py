@@ -1,4 +1,5 @@
 import argparse
+import json
 import logging
 import os
 import requests
@@ -6,6 +7,7 @@ import time
 
 
 from dateutil import parser
+from pathlib import Path
 from pymongo import MongoClient
 from ratelimiter import RateLimiter
 
@@ -43,15 +45,26 @@ def get_database():
 
     return client[DB_NAME]
 
+def has_definition(json_tree):
+    for branch in json_tree:
+        if "meta" in branch:
+            return True
+    return False
+
 
 # 1000 calls per day
 @RateLimiter(max_calls=1000, period=3600*24)
 def get_definition(word):
-    url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={API_KEY}"
+    url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={get_secret('MW_API_KEY')}"
     resp = requests.get(url)
 
     if resp.status_code != 200:
-        logging.warning(f"could not get definition: {word}")
+        logging.warning(f"invalid API response: {word}")
+        return time.localtime(), None
+
+    json_entry = json.loads(resp.text)
+    if not has_definition(json_entry):
+        logging.warning(f"word not found: {word}")
         return time.localtime(), None
 
     return time.localtime(), resp.text
