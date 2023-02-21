@@ -1,4 +1,4 @@
-{% extends 'public_site/base.html' %}
+{% extends override_base|default:'public_site/base.html' %}
 
 
 {% block content %}
@@ -9,7 +9,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" style="width: 10%" id="syllables">
+        <td colspan="2" id="syllables">
           {{ definition.syllables }}
         </td>
         <td colspan="2" id="pronunciation">
@@ -18,7 +18,7 @@
     </tr>
     {% for sense in definition.sense_list %}
     <tr>
-        <td style="width: 50px"></td>
+        <td style="width: 30px"></td>
         <td style="width: 20px; align: left; vertical-align: top" id="sense">{{ sense.sense_number }}</td>
         <td colspan="2" id="sense">{{ sense.sense_text | safe }}</td>
     </tr>

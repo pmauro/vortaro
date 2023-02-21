@@ -29,7 +29,8 @@ def main(request):
     definition = mw.parse(cur_word['word'], cur_word['api_response'][1:-1])
 
     context = {'word_list': sorted(w['word'] for w in word_list),
-               'definition': definition.to_dict() if definition is not None else None }
+               'definition': definition.to_dict() if definition is not None else None,
+               'override_base': 'public_site/blank.html'}
     return render(request, 'public_site/home.html', context)
 
 # def menu(request):

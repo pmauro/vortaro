@@ -86,6 +86,7 @@ class Definition:
 
 
 def parse(headword, raw_json):
+    try:
         parsed_json = json.loads(raw_json)
     except:
         return None
