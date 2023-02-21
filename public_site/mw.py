@@ -38,6 +38,9 @@ class Sense:
         raw_str = raw_str.replace("{bc}", "<b>:</b>&nbsp;")
         raw_str = re.sub(r"\{[ad]_link\|(\w+)(\|\S+)?\}", r"\1", raw_str)
         raw_str = re.sub(r"\{sx\|([a-z ]+)\|(\S+)?\|(\S+)?\}", r"\1", raw_str)
+        raw_str = re.sub(r"\{it\}", "<em>", raw_str)
+        raw_str = re.sub(r"\{/it\}", "</em>", raw_str)
+        raw_str = re.sub(r"\{dx_def\}.*\{/dx_def\}", "", raw_str)
         return raw_str
 
     def __str__(self):
