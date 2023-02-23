@@ -133,3 +133,7 @@ secrets.json
 .idea/
 admin/test_words.txt
 admin/log.txt
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
