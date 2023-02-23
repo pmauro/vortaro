@@ -19,8 +19,20 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
-    secrets = json.load(secrets_file)
+secrets_path = os.path.join(BASE_DIR, 'secrets.json')
+if os.path.exists(secrets_path):
+    with open() as secrets_file:
+        secrets = json.load(secrets_file)
+else:
+    secrets = {
+        "SECRET_KEY": os.environ['SECRET_KEY'],
+        "MW_API_KEY": os.environ['MW_API_KEY'],
+        "MONGO_DB": {
+            "USERNAME": os.environ['MONGO_DB_USER'],
+            "PASSWORD": os.environ['MONGO_DB_PASS'],
+            "HOST": os.environ['MONGO_DB_HOST']
+        }
+    }
 
 
 def get_secret(setting, secrets=secrets):
@@ -92,7 +104,8 @@ WSGI_APPLICATION = 'vortaro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME':  'db.sqlite3',
     }
 }
 
