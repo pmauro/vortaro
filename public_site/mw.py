@@ -134,6 +134,9 @@ def parse(raw_json):
         if "hwi" not in hw_entry or "fl" not in hw_entry:
             continue
 
+        if hw_entry["meta"]["section"] != "alpha":
+            continue
+
         hwi = hw_entry["hwi"]
         # wrap to catch format issues
         d = Definition(hwi)
