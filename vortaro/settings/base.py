@@ -17,7 +17,7 @@ from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 secrets_path = os.path.join(BASE_DIR, 'secrets.json')
 if os.path.exists(secrets_path):
@@ -46,13 +46,6 @@ def get_secret(setting, secrets=secrets):
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 SECRET_KEY = get_secret('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = [
-    'vortaro-env.eba-8pk4vxzp.us-west-2.elasticbeanstalk.com'
-]
 
 # Application definition
 
