@@ -18,14 +18,22 @@ class Sense:
 
         self.sn_top = None
         self.sn_sub = None
-        sn_split = sn.split()
-        if len(sn_split) > 0:
-            if sn_split[0].isdigit():
-                self.sn_top = sn_split[0]
-                if len(sn_split) > 1:
-                    self.sn_sub = sn_split[1]
-            else:
-                self.sn_sub = sn_split[0]
+
+    @staticmethod
+    def parse_sense_number(raw_sn, def_sn_top=None):
+        sn_split = raw_sn.split()
+        if len(sn_split) == 0:
+            return None, None
+
+        sn_top, sn_sub = None, None
+        if sn_split[0].isdigit():
+            sn_top = sn_split[0]
+            if len(sn_split) > 1:
+                sn_sub = sn_split[1]
+        else:
+            sn_top = def_sn_top
+            sn_sub = sn_split[0]
+        return sn_top, sn_sub
 
     def set_def_text(self, dt):
         if self.def_text is not None:
@@ -35,6 +43,9 @@ class Sense:
 
     @staticmethod
     def proc_mw_text(raw_str):
+        if raw_str is None or len(raw_str) == 0:
+            return raw_str
+
         raw_str = raw_str.replace("{bc}", "<b>:</b>&nbsp;")
         raw_str = re.sub(r"\{[ad]_link\|(\w+)(\|\S+)?\}", r"\1", raw_str)
         raw_str = re.sub(r"\{sx\|([a-z ]+)\|(\S+)?\|(\S+)?\}", r"\1", raw_str)
@@ -61,10 +72,10 @@ class Sense:
 
 
 class Definition:
-    def __init__(self, headword):
-        if headword is None:
+    def __init__(self, hwi):
+        if hwi is None:
             pass
-        self.headword = headword
+        self.headword = Definition.parse_headword(hwi['hw'])
         self.syllables = None
         self.pronunciation = None
         self.func_label = None
@@ -94,6 +105,7 @@ class Definition:
             sense_list.append(s.to_dict())
 
         return {"headword": self.headword,
+                "func_label": self.func_label,
                 "syllables": self.syllables,
                 "pronunciation": self.pronunciation,
                 "sense_list": sense_list}
@@ -102,62 +114,92 @@ class Definition:
     def parse_syllables(input_str):
         return input_str.replace("*", "\u2022")
 
+    @staticmethod
+    def parse_headword(input_str):
+        return input_str.replace("*", "")
 
-def parse(headword, raw_json):
+
+def parse(raw_json):
     try:
         parsed_json = json.loads(raw_json)
     except:
+        print("Got here")
         return None
-    if type(parsed_json) == list:
-        parsed_json = parsed_json[0]
+    # if type(parsed_json) == list:
+    #     parsed_json = parsed_json[2]
 
-    if "hwi" not in parsed_json:
-        return None
+    definition_list = []
+    for hw_entry in parsed_json:
 
-    d = Definition(headword)
+        if "hwi" not in hw_entry or "fl" not in hw_entry:
+            continue
 
-    # wrap to catch format issues
-
-    if "hwi" in parsed_json:
-        hwi = parsed_json["hwi"]
+        hwi = hw_entry["hwi"]
+        # wrap to catch format issues
+        d = Definition(hwi)
 
         d.syllables = Definition.parse_syllables(hwi["hw"])
-
         if "prs" in hwi:
             # todo Expand to multiple pronunciations
             d.pronunciation = hwi["prs"][0]["mw"]
 
-    d.func_label = parsed_json["fl"]
+        d.func_label = hw_entry["fl"]
 
-    if "def" in parsed_json:
-        sense_seq = parsed_json["def"][0]['sseq']
+        if "def" in hw_entry:
+            sense_seq = hw_entry["def"][0]['sseq']
 
-        for sense in sense_seq:
-            for entry in sense:
-                if entry[0] != "sense":
-                    # todo throw warning
-                    continue
+            cur_sense_number = None
+            for sense in sense_seq:
+                for sense_entry in sense:
+                    if sense_entry[0] == "sen":
+                        cur_sense_number = sense_entry[1]["sn"]
+                        continue
+                    elif sense_entry[0] == "sense":
+                        sense_entry_vals = sense_entry[1]
+                    elif sense_entry[0] == "bs":
+                        sense_entry_vals = sense_entry[1]["sense"]
+                    else:
+                        # todo throw warning
+                        continue
 
-                entry_vals = entry[1]
-                sense_number = ""
-                if 'sn' in entry_vals:
-                    sense_number = entry_vals['sn']
+                    sense_number = ""
+                    if 'sn' in sense_entry_vals:
+                        sense_number = sense_entry_vals['sn']
 
-                s = Sense(sense_number)
-                for ev in entry_vals['dt']:
-                    if ev[0] == 'text':
-                        s.set_def_text(ev[1])
+                    s = Sense(sense_number)
+                    s.sn_top, s.sn_sub = Sense.parse_sense_number(sense_number, cur_sense_number)
 
-                d.senses.append(s)
+                    for ev in sense_entry_vals['dt']:
+                        if ev[0] == 'text':
+                            s.set_def_text(ev[1])
+                        elif ev[0] == 'uns':
+                            if ev[1][0][0][0] == 'text':
+                                s.set_def_text(ev[1][0][0][1])
 
-    return d
+                    d.senses.append(s)
+
+        definition_list.append(d)
+
+    return definition_list
+
+def defn_list_to_dict(definition_list):
+    if definition_list is None:
+        return None
+
+    output = []
+    for definition in definition_list:
+        output.append(definition.to_dict())
+    return output
+
 
 
 if __name__ == "__main__":
-    file_name = "/Users/patrickmauro/code/dictionary/flaskr/words/voluminous.json"
+    file_name = "/Users/patrickmauro/code/dictionary/test.json"
     with open(file_name) as f:
-        raw_json = f.readlines()
+        raw_json = str(f.readlines())[2:-2]
 
-    defn = parse("voluminous", str(raw_json)[3:-3])
+    defn_list = parse("ha-ha", raw_json)
 
-    print(str(defn))
+    for defn in defn_list:
+        print(str(defn))
+        print("----")

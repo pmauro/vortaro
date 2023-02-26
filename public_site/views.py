@@ -26,10 +26,11 @@ def main(request):
 
     word_list = list(db_docs)
     cur_word = choice(word_list)
-    definition = mw.parse(cur_word['word'], cur_word['api_response'][1:-1])
+    definition_list = mw.parse(cur_word['api_response'])
+    definition_dict_list = mw.defn_list_to_dict(definition_list)
 
     context = {'word_list': sorted(w['word'] for w in word_list),
-               'definition': definition.to_dict() if definition is not None else None,
+               'definition_list': definition_dict_list,
                'override_base': 'public_site/blank.html'}
     return render(request, 'public_site/home.html', context)
 
@@ -48,8 +49,10 @@ def definition(request, word):
 
     db_doc = mongo_client()[DB_NAME][DB_COLLECTION].find_one({"word": word})
 
-    definition = mw.parse(word, db_doc['api_response'])
-    if definition is None:
+    definition_list = mw.parse(db_doc['api_response'])
+    definition_dict_list = mw.defn_list_to_dict(definition_list)
+
+    if definition_dict_list is None:
         return HttpResponse("No definition in Merriam-Webster.")
 
-    return render(request, 'public_site/word_card.html', {'definition': definition.to_dict()})
+    return render(request, 'public_site/word_card.html', {'definition_list': definition_dict_list})

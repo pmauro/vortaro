@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 secrets_path = os.path.join(BASE_DIR, 'secrets.json')
 if os.path.exists(secrets_path):
-    with open() as secrets_file:
+    with open(secrets_path) as secrets_file:
         secrets = json.load(secrets_file)
 else:
     secrets = {
@@ -53,7 +53,6 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'vortaro-env.eba-8pk4vxzp.us-west-2.elasticbeanstalk.com'
 ]
-
 
 # Application definition
 

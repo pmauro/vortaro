@@ -134,6 +134,7 @@ secrets.json
 admin/test_words.txt
 admin/log.txt
 # Elastic Beanstalk Files
+eb-virt/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml

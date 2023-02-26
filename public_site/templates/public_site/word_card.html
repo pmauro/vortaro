@@ -3,20 +3,24 @@
 
 {% block content %}
 <div style="padding-left: 20px;">
+    {% for definition in definition_list %}
     <div id="headword">{{ definition.headword }}</div>
     <div class="flex-container">
-        <div id="syllables">{{ definition.syllables }}</div>
-        {% if definition %}
-        <div id="syllables">&nbsp;|&nbsp;</div>
+        <div class="func_label">{{ definition.func_label }}</div>
+        <div class="syllables">&nbsp;|&nbsp;</div>
+        <div class="syllables">{{ definition.syllables }}</div>
+        {% if definition.pronunciation %}
+        <div class="syllables">&nbsp;|&nbsp;</div>
+        <div class="pronunciation">{{ definition.pronunciation }}</div>
         {% endif %}
-        <div id="pronunciation">{{ definition.pronunciation }}</div>
     </div>
     {% for sense in definition.sense_list %}
     <div class="flex-container">
-        <div id="sense" style="width: 30px; horiz-align: right">{{ sense.sense_number }}</div>
-        <div id="sense" style="width: 30px; horiz-align: right">{{ sense.sense_number_sub }}</div>
-        <div id="sense">{{ sense.sense_text | safe }}</div>
+        <div class="sense" style="width: 30px; horiz-align: right">{{ sense.sense_number }}</div>
+        <div class="sense" style="width: 30px; horiz-align: right">{{ sense.sense_number_sub }}</div>
+        <div class="sense">{{ sense.sense_text | safe }}</div>
     </div>
+    {% endfor %}
     {% endfor %}
 </div>
 
