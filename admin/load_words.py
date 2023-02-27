@@ -5,8 +5,8 @@ import os
 import requests
 import time
 
-
 from dateutil import parser
+from decouple import config
 from pathlib import Path
 from pymongo import MongoClient
 from ratelimiter import RateLimiter
@@ -21,23 +21,12 @@ LOGGER = logging.getLogger("dictionary")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
-    secrets = json.load(secrets_file)
-
-
-def get_secret(setting, secrets=secrets):
-    try:
-        return secrets[setting]
-    except KeyError:
-        raise ValueError(f"Set the {setting} setting.")
-
-
 def get_database():
     # Provide the mongodb atlas url to connect python to mongodb using pymongo
     CONNECTION_STRING = "mongodb+srv://{username:}:{password:}@{host:}/?retryWrites=true&w=majority".format(
-        username=get_secret("MONGO_DB")["USERNAME"],
-        password=get_secret("MONGO_DB")["PASSWORD"],
-        host=get_secret("MONGO_DB")["HOST"]
+        username=config("MONGO_DB_USER"),
+        password=config("MONGO_DB_PASS"),
+        host=config("MONGO_DB_HOST")
     )
 
     # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
@@ -55,7 +44,7 @@ def has_definition(json_tree):
 # 1000 calls per day
 @RateLimiter(max_calls=1000, period=3600*24)
 def get_definition(word):
-    url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={get_secret('MW_API_KEY')}"
+    url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={config('MW_API_KEY')}"
     resp = requests.get(url)
 
     if resp.status_code != 200:

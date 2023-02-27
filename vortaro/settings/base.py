@@ -10,42 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import json
-import os
-
-from django.core.exceptions import ImproperlyConfigured
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-secrets_path = os.path.join(BASE_DIR, 'secrets.json')
-if os.path.exists(secrets_path):
-    with open(secrets_path) as secrets_file:
-        secrets = json.load(secrets_file)
-else:
-    secrets = {
-        "SECRET_KEY": os.environ['SECRET_KEY'],
-        "MW_API_KEY": os.environ['MW_API_KEY'],
-        "MONGO_DB": {
-            "USERNAME": os.environ['MONGO_DB_USER'],
-            "PASSWORD": os.environ['MONGO_DB_PASS'],
-            "HOST": os.environ['MONGO_DB_HOST']
-        }
-    }
-
-
-def get_secret(setting, secrets=secrets):
-    try:
-        return secrets[setting]
-    except KeyError:
-        raise ImproperlyConfigured(f"Set the {setting} setting.")
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-SECRET_KEY = get_secret('SECRET_KEY')
+SECRET_KEY = config("SECRET_KEY")
 
 # Application definition
 
@@ -144,7 +118,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MONGODB_URI = "mongodb+srv://{username:}:{password:}@{host:}/?retryWrites=true&w=majority".format(
-    username=get_secret('MONGO_DB')['USERNAME'],
-    password=get_secret('MONGO_DB')['PASSWORD'],
-    host=get_secret('MONGO_DB')['HOST']
+    username=config('MONGO_DB_USER'),
+    password=config('MONGO_DB_PASS'),
+    host=config('MONGO_DB_HOST')
 )
