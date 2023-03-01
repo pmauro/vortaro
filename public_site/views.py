@@ -1,17 +1,21 @@
 import public_site.mw as mw
+import public_site.load_words as lw
 
+from decouple import config
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 from pymongo import MongoClient
 from random import choice
 from threading import local
+from twilio.twiml.messaging_response import MessagingResponse
 
 DB_NAME = "mw"
 DB_COLLECTION = "definitions"
 
 _mongo_client = local()
-
 
 def mongo_client():
     client = getattr(_mongo_client, 'client', None)
@@ -19,6 +23,39 @@ def mongo_client():
         client = MongoClient(settings.MONGODB_URI)
         _mongo_client.client = client
     return client
+
+
+@csrf_exempt
+@require_http_methods(["GET", "POST"])
+def twilio_webhook(request):
+    resp = MessagingResponse()
+
+    if request.method == "GET":
+        text_body = request.GET['Body']
+    elif request.method == "POST":
+        text_body = request.POST['Body']
+
+    if len(text_body.split()) >= 2:
+        resp.message("Invalid number of words in input.")
+        return HttpResponse(str(resp))
+
+    word = text_body.strip().lower()
+    query_time, api_response = lw.get_definition(word)
+    if api_response is None:
+        out_message = f"could not lookup definition: {word}"
+        #LOGGER.error(out_message)
+        resp.message(out_message)
+        return HttpResponse(out_message)
+
+    # todo Accept 'overwrite' parameter?
+    ret = lw.save_entry(mongo_client()[DB_NAME][DB_COLLECTION], word, query_time, api_response)
+    if not ret:
+        out_message = f"could not save entry: {word}"
+    else:
+        out_message = f"http://{settings.ALLOWED_HOSTS[0]}/words/{word}"
+    resp.message(out_message)
+
+    return HttpResponse(str(resp))
 
 
 def main(request):

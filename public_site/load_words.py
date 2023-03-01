@@ -17,10 +17,6 @@ DB_COLLECTION = "definitions"
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s -- %(message)s')
 LOGGER = logging.getLogger("dictionary")
 
-# todo Keep this from repeating code that appears in vortaro/settings.py
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 def get_database():
     # Provide the mongodb atlas url to connect python to mongodb using pymongo
     CONNECTION_STRING = "mongodb+srv://{username:}:{password:}@{host:}/?retryWrites=true&w=majority".format(
