@@ -45,7 +45,7 @@ def twilio_webhook(request):
         out_message = f"could not lookup definition: {word}"
         #LOGGER.error(out_message)
         resp.message(out_message)
-        return HttpResponse(str(out_message))
+        return HttpResponse(str(resp))
 
     # todo Accept 'overwrite' parameter?
     ret = lw.save_entry(mongo_client()[DB_NAME][DB_COLLECTION], word, query_time, api_response)
