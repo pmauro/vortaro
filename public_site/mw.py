@@ -8,6 +8,14 @@ def safe_str(val, prefix='', suffix=''):
     return prefix + " " + suffix
 
 
+def make_link(text, url):
+    return f"<a href='{url}' target='_blank'>{text}</a>"
+
+
+def get_mw_word_url(word):
+    return f"https://www.merriam-webster.com/dictionary/{word}"
+
+
 class Sense:
     def __init__(self, sn):
         self.sense_number = sn
@@ -37,21 +45,44 @@ class Sense:
 
     def set_def_text(self, dt):
         if self.def_text is not None:
-            pass
-
-        self.def_text = dt
+            self.def_text += "&#x2192; " + dt
+        else:
+            self.def_text = dt
 
     @staticmethod
     def proc_mw_text(raw_str):
         if raw_str is None or len(raw_str) == 0:
             return raw_str
 
+        # bc - bold colon
         raw_str = raw_str.replace("{bc}", "<b>:</b>&nbsp;")
-        raw_str = re.sub(r"\{[ad]_link\|(\w+)(\|\S+)?\}", r"\1", raw_str)
-        raw_str = re.sub(r"\{sx\|([a-z ]+)\|(\S+)?\|(\S+)?\}", r"\1", raw_str)
-        raw_str = re.sub(r"\{it\}", "<em>", raw_str)
-        raw_str = re.sub(r"\{/it\}", "</em>", raw_str)
-        raw_str = re.sub(r"\{dx_def\}.*\{/dx_def\}", "", raw_str)
+        # a_link - auto link
+        raw_str = re.sub(r"\{a_link\|([^\{]+)\}", make_link(r"\1", get_mw_word_url(r"\1")), raw_str)
+        # todo For d_link, i_link, and sx, fallback to \1 if \2 not given.
+        # d_link - direct link
+        raw_str = re.sub(r"\{d_link\|([^\{]+)\|([^\{]+)\}", make_link(r"\1", get_mw_word_url(r"\2")), raw_str)
+        # i_link - italicized link
+        raw_str = re.sub(r"\{i_link\|([^\{]+)\|([^\{]+)\}",
+                         "<em>" + make_link(r"\1", get_mw_word_url(r"\2")) + "</em>",
+                         raw_str)
+        # sx - synonymous cross-reference
+        # todo display link text in uppercase
+        raw_str = re.sub(r"\{sx\|([\w\s]+)\|\|\}", make_link(r"\1", get_mw_word_url(r"\1")), raw_str)
+        # dxt - directional cross-reference target
+        # todo display link text in uppercase
+        raw_str = re.sub(r"\{dxt\|(\S+)\|\|\}", make_link(r"\1", get_mw_word_url(r"\1")), raw_str)
+        # dx -
+        raw_str = re.sub(r"\{dx\}([^\{]+)\{\/dx\}", r"&#x2192; \1", raw_str)
+        # it - italics
+        raw_str = re.sub(r"\{it\}([^\{]+)\{\/it\}", r"<em> \1 </em>", raw_str)
+        # sc - small capitals
+        raw_str = re.sub(r"\{sc\}([^\{]+)\{\/sc\}", r"<span class='sc'> \1 </span>", raw_str)
+        # phrase - phrase
+        raw_str = re.sub(r"\{phrase\}([^\{]+)\{\/phrase\}", r"<b><em> \1 </em></b>", raw_str)
+        # inf - subscript
+        raw_str = re.sub(r"\{inf\}([^\{]+)\{\/inf\}", r"<span style='vertical-align:sub;'> \1 </span>", raw_str)
+
+        raw_str = re.sub(r"\{dx_def\}[^\{]*\{/dx_def\}", "", raw_str)
         return raw_str
 
     def __str__(self):
@@ -173,6 +204,7 @@ def parse(raw_json):
                     s.sn_top, s.sn_sub = Sense.parse_sense_number(sense_number, cur_sense_number)
 
                     for ev in sense_entry_vals['dt']:
+                        print(ev[0])
                         if ev[0] == 'text':
                             s.set_def_text(ev[1])
                         elif ev[0] == 'uns':
