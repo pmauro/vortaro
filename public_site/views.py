@@ -44,7 +44,7 @@ def validate_twilio_request(f):
 
         # Continue processing the request if it's valid, return a 403 error if
         # it's not
-        if request_valid:
+        if request_valid or settings.DEBUG:
             return f(request, *args, **kwargs)
         else:
             return HttpResponseForbidden()
@@ -58,9 +58,18 @@ def twilio_webhook(request):
     resp = MessagingResponse()
 
     if request.method == "GET":
-        text_body = request.GET['Body']
+        container = request.GET
     elif request.method == "POST":
-        text_body = request.POST['Body']
+        container = request.POST
+    else:
+        return HttpResponseForbidden()
+
+    text_body = container['Body']
+    sender = container['From']
+
+    if sender != config('VALID_PHONE_NUMBER'):
+        resp.message("unauthorized access")
+        return HttpResponse(str(resp))
 
     if len(text_body.split()) >= 2:
         resp.message("Invalid number of words in input.")
