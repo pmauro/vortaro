@@ -50,6 +50,66 @@ class Sense:
             self.def_text = dt
 
     @staticmethod
+    def proc_link(raw_str, prefix, num_parts):
+        if num_parts not in {1, 2, 3}:
+            return
+
+        item_str = "([a-zA-Z- :0-9]+)"
+        search_str = "\{" + prefix + "\|" + item_str
+        if num_parts > 1:
+            search_str += "\|" + item_str + "?"
+        if num_parts == 3:
+            search_str += "\|" + item_str + "?"
+        search_str += "\}"
+
+        do_upper = False
+        if prefix not in {"a_link", "d_link", "i_link"}:
+            do_upper = True
+
+        while True:
+            match = re.search(search_str, raw_str)
+            if not match:
+                break
+
+            text = match.group(1)
+            link = match.group(2) if len(match.groups()) > 1 else None
+            sense_number = match.group(3) if len(match.groups()) > 2 else None
+
+            if link is None:
+                link = text
+
+            text_elements = text.split(":")
+            if len(text_elements) == 1:
+                if do_upper:
+                    text = text.upper()
+            else:
+                if do_upper:
+                    text = text_elements[0].upper()
+                text += f" entry {text_elements[1]}"
+
+            link_elements = link.split(":")
+            if len(link_elements) == 2:
+                if link_elements[1].isdigit():
+                    anchor_text = f"#h{link_elements[1]}"
+                else:
+                    anchor_text = f"#{link_elements[1]}"
+                link = link_elements[0] + anchor_text
+
+            if sense_number is not None:
+                text += f" sense {sense_number}"
+
+            if do_upper:
+                link_html = "<span style='font-size:80%;'>" + make_link(text, get_mw_word_url(link)) + "</span>"
+            elif prefix == "i":
+                link_html = "<em>" + make_link(text, get_mw_word_url(link)) + "</em>"
+            else:
+                link_html = make_link(text, get_mw_word_url(link))
+
+            raw_str = raw_str.replace(match.group(0), link_html)
+
+        return raw_str
+
+    @staticmethod
     def proc_mw_text(raw_str):
         if raw_str is None or len(raw_str) == 0:
             return raw_str
@@ -57,32 +117,28 @@ class Sense:
         # bc - bold colon
         raw_str = raw_str.replace("{bc}", "<b>:</b>&nbsp;")
         # a_link - auto link
-        raw_str = re.sub(r"\{a_link\|([^\{]+)\}", make_link(r"\1", get_mw_word_url(r"\1")), raw_str)
-        # todo For d_link, i_link, and sx, fallback to \1 if \2 not given.
+        raw_str = Sense.proc_link(raw_str, "a_link", 1)
         # d_link - direct link
-        raw_str = re.sub(r"\{d_link\|([^\{]+)\|([^\{]+)\}", make_link(r"\1", get_mw_word_url(r"\2")), raw_str)
+        raw_str = Sense.proc_link(raw_str, "d_link", 2)
         # i_link - italicized link
-        raw_str = re.sub(r"\{i_link\|([^\{]+)\|([^\{]+)\}",
-                         "<em>" + make_link(r"\1", get_mw_word_url(r"\2")) + "</em>",
-                         raw_str)
+        raw_str = Sense.proc_link(raw_str, "i_link", 2)
         # sx - synonymous cross-reference
-        # todo display link text in uppercase
-        raw_str = re.sub(r"\{sx\|([\w\s]+)\|\|\}", make_link(r"\1", get_mw_word_url(r"\1")), raw_str)
+        raw_str = Sense.proc_link(raw_str, "sx", 3)
         # dxt - directional cross-reference target
-        # todo display link text in uppercase
-        raw_str = re.sub(r"\{dxt\|(\S+)\|\|\}", make_link(r"\1", get_mw_word_url(r"\1")), raw_str)
+        raw_str = Sense.proc_link(raw_str, "dxt", 3)
         # dx -
-        raw_str = re.sub(r"\{dx\}([^\{]+)\{\/dx\}", r"&#x2192; \1", raw_str)
+        raw_str = re.sub(r"\{dx\}(.+)\{\/dx\}", r"&#x2192; \1", raw_str)
+        # dx_def -
+        raw_str = re.sub(r"\{dx_def\}(.+)\{\/dx_def\}", r"(\1)", raw_str)
         # it - italics
-        raw_str = re.sub(r"\{it\}([^\{]+)\{\/it\}", r"<em> \1 </em>", raw_str)
+        raw_str = re.sub(r"\{it\}([a-zA-Z- ]+)\{\/it\}", r"<em> \1 </em>", raw_str)
         # sc - small capitals
-        raw_str = re.sub(r"\{sc\}([^\{]+)\{\/sc\}", r"<span class='sc'> \1 </span>", raw_str)
+        raw_str = re.sub(r"\{sc\}([a-zA-Z-][^\{]+)\{\/sc\}", r"<span class='sc'> \1 </span>", raw_str)
         # phrase - phrase
-        raw_str = re.sub(r"\{phrase\}([^\{]+)\{\/phrase\}", r"<b><em> \1 </em></b>", raw_str)
+        raw_str = re.sub(r"\{phrase\}([a-zA-Z-]+)\{\/phrase\}", r"<b><em> \1 </em></b>", raw_str)
         # inf - subscript
-        raw_str = re.sub(r"\{inf\}([^\{]+)\{\/inf\}", r"<span style='vertical-align:sub;'> \1 </span>", raw_str)
+        raw_str = re.sub(r"\{inf\}([a-zA-Z0-9]+)\{\/inf\}", r"<span style='vertical-align:sub;'> \1 </span>", raw_str)
 
-        raw_str = re.sub(r"\{dx_def\}[^\{]*\{/dx_def\}", "", raw_str)
         return raw_str
 
     def __str__(self):
@@ -154,7 +210,6 @@ def parse(raw_json):
     try:
         parsed_json = json.loads(raw_json)
     except:
-        print("Got here")
         return None
     # if type(parsed_json) == list:
     #     parsed_json = parsed_json[2]
@@ -165,7 +220,7 @@ def parse(raw_json):
         if "hwi" not in hw_entry or "fl" not in hw_entry:
             continue
 
-        if hw_entry["meta"]["section"] != "alpha":
+        if hw_entry["meta"]["section"] not in("alpha", "fwp"):
             continue
 
         hwi = hw_entry["hwi"]
@@ -204,7 +259,6 @@ def parse(raw_json):
                     s.sn_top, s.sn_sub = Sense.parse_sense_number(sense_number, cur_sense_number)
 
                     for ev in sense_entry_vals['dt']:
-                        print(ev[0])
                         if ev[0] == 'text':
                             s.set_def_text(ev[1])
                         elif ev[0] == 'uns':
