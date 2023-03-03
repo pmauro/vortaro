@@ -130,7 +130,7 @@ dmypy.json
 
 # Project files
 .idea/
-admin/test_words.txt
+admin/problem_words.txt
 admin/log.txt
 # Elastic Beanstalk Files
 eb-virt/
