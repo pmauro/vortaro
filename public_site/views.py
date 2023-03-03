@@ -4,12 +4,14 @@ import public_site.load_words as lw
 from decouple import config
 from django.conf import settings
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
+from functools import wraps
 from pymongo import MongoClient
 from random import choice
 from threading import local
+from twilio.request_validator import RequestValidator
 from twilio.twiml.messaging_response import MessagingResponse
 
 DB_NAME = "mw"
@@ -25,8 +27,33 @@ def mongo_client():
     return client
 
 
-@csrf_exempt
+def validate_twilio_request(f):
+    """Validates that incoming requests genuinely originated from Twilio"""
+    @wraps(f)
+    def decorated_function(request, *args, **kwargs):
+        # Create an instance of the RequestValidator class
+        validator = RequestValidator(config("TWILIO_AUTH_TOKEN"))
+        uri = request.build_absolute_uri()
+
+        # Validate the request using its URL, POST data,
+        # and X-TWILIO-SIGNATURE header
+        request_valid = validator.validate(
+            uri,
+            request.POST,
+            request.META.get('HTTP_X_TWILIO_SIGNATURE', ''))
+
+        # Continue processing the request if it's valid, return a 403 error if
+        # it's not
+        if request_valid:
+            return f(request, *args, **kwargs)
+        else:
+            return HttpResponseForbidden()
+    return decorated_function
+
+
 @require_http_methods(["GET", "POST"])
+@csrf_exempt
+@validate_twilio_request
 def twilio_webhook(request):
     resp = MessagingResponse()
 
