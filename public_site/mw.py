@@ -131,13 +131,13 @@ class Sense:
         # dx_def -
         raw_str = re.sub(r"\{dx_def\}(.+)\{\/dx_def\}", r"(\1)", raw_str)
         # it - italics
-        raw_str = re.sub(r"\{it\}([a-zA-Z- ]+)\{\/it\}", r"<em> \1 </em>", raw_str)
+        raw_str = re.sub(r"\{it\}([a-zA-Z0-9-\. ]+)\{\/it\}", r"<em> \1 </em>", raw_str)
         # sc - small capitals
-        raw_str = re.sub(r"\{sc\}([a-zA-Z- ][^\{]+)\{\/sc\}", r"<span class='sc'> \1 </span>", raw_str)
+        raw_str = re.sub(r"\{sc\}([a-zA-Z0-9-\. ]+)\{\/sc\}", r"<span class='sc'> \1 </span>", raw_str)
         # phrase - phrase
-        raw_str = re.sub(r"\{phrase\}([a-zA-Z- ]+)\{\/phrase\}", r"<b><em> \1 </em></b>", raw_str)
+        raw_str = re.sub(r"\{phrase\}([a-zA-Z0-9-\. ]+)\{\/phrase\}", r"<b><em> \1 </em></b>", raw_str)
         # inf - subscript
-        raw_str = re.sub(r"\{inf\}([a-zA-Z0-9- ]+)\{\/inf\}", r"<span style='vertical-align:sub;'> \1 </span>", raw_str)
+        raw_str = re.sub(r"\{inf\}([a-zA-Z0-9-\. ]+)\{\/inf\}", r"<span style='vertical-align:sub;'> \1 </span>", raw_str)
 
         return raw_str
 
